@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto con Modal Bootstrap</title>
+    <!-- Vincula los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Tu archivo CSS compilado -->
+</head>
+<body>
+
+    <!-- Botón para abrir el modal -->
+    <button id="openModalBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Abrir Modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Título del Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Este es el contenido del modal.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personalizado para manejar eventos del modal -->
+    <script>
+        $(document).ready(function() {
+            // Obtener el botón que abre el modal
+            const openModalBtn = $('#openModalBtn');
+
+            // Registrar los eventos del modal
+            $('#myModal').on('show.bs.modal', function() {
+                console.log('Modal comenzando a abrirse');
+                // Cambiar el estado del botón al abrir el modal
+                openModalBtn.prop('disabled', true).css('background-color', 'grey');
+            });
+
+            $('#myModal').on('shown.bs.modal', function() {
+                console.log('Modal abierto completamente');
+            });
+
+            $('#myModal').on('hide.bs.modal', function() {
+                console.log('Modal comenzando a cerrarse');
+            });
+
+            $('#myModal').on('hidden.bs.modal', function() {
+                console.log('Modal cerrado completamente');
+                // Restaurar el estado del botón al cerrar el modal
+                openModalBtn.prop('disabled', false).css('background-color', '');
+            });
+        });
+    </script>
+
+</body>
+</html>
